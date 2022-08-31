@@ -48,7 +48,7 @@ public class App
                 }
             } while (!select.equals("q"));
         } catch (Exception e) {
-            sop("poop");
+            sop("Something went wrong");
             e.printStackTrace();
         }
        boi.close();
@@ -78,7 +78,7 @@ public class App
         sop("c \t Clear");
         sop("q \t Quit");
         sop("-----------------------------");
-        System.out.print("Enter a command ");
+        sopr("Enter a command ");
         command = boi.nextLine().toLowerCase();
         return command;
 
@@ -92,7 +92,7 @@ public class App
             boi.nextLine();
             return number;
         }catch(Exception e) {
-            sop("Enter a number boi");
+            sop("Error: Enter a number next time");
             boi.nextLine();
             return 0;
         }
@@ -105,7 +105,7 @@ public class App
             boi.nextLine();
             return number;
         } catch (Exception e) {
-            sop("Error: Enter a number boi");
+            sop("Error: Enter a number next time");
             boi.nextLine();
             return 0;
         }
@@ -121,7 +121,7 @@ public class App
     }
     static float divide(float x, float y) {
         if (x == 0 || y ==0){
-            sop("Error");
+            sop("Error: can't divide 0");
             return 0;
         }
         else {
