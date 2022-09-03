@@ -1,4 +1,6 @@
-package main.java.animalgps;
+package animalgps;
+
+import java.net.SocketPermission;
 
 public class panthera extends PantheraGPS{
      // constructor
@@ -21,11 +23,23 @@ public class panthera extends PantheraGPS{
         s += "longitude: " + this.longitude();
         s += ", ";
         s += "latitude: " + this.latitude();
-        s += " }";
+        s += ", ";
+        s += "speed: " + this.speed();
+        s += ", ";
+        s += "weight: " + this.weight();
+        s += "}";
         return s;
     }
-    public String fur() {
-        return "Panthera";
+    public Float speed() {
+        float speeding = (float) (Math.random() * maxSpeed) + minSpeed;
+        return speeding;
+      }
+    public Float weight() {
+        float weighting = (float) (Math.random() *600) +10;
+        return weighting;
+    }
+    public static void roar() {
+        sop("Rrrrrrrrroooooooaaaaarrrrr!");
     }
 
     

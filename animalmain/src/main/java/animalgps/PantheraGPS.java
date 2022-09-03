@@ -1,4 +1,4 @@
-package main.java.animalgps;
+package animalgps;
 import java.util.*;
 public class PantheraGPS {
       // constants
@@ -74,6 +74,9 @@ public class PantheraGPS {
       public Float latitude() {
           return latitude;
       }
+      public static void sop(Object x) {
+        System.out.println(x);
+    }
       
 
     

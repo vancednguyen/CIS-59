@@ -4,10 +4,9 @@ import java.net.JarURLConnection;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import main.java.animalgps.Jaguar;
-import main.java.animalgps.Lion;
-import main.java.animalgps.Tiger;
-import main.java.animalgps.panthera;
+import javax.lang.model.element.Parameterizable;
+
+
 
 /**
  * Hello world!
@@ -25,17 +24,15 @@ public class App
             select = menu();
             switch (select) {
                 case 'c':
-                    sop("creating");
                     crate(p);
                     break;
                 case 'd':
-                    sop("deletling");
+                    deletingcat(p);
                     break;
                 case 'f':
-                    sop("finding");
+                    findcats(p);
                     break;
                 case 'l':
-                    sop("lisitng");
                     listcats(p);
                     break;
                 case 'q':
@@ -63,44 +60,80 @@ public class App
         return Character.toLowerCase(command);
     }
     public static void crate(ArrayList<panthera> p) {
+        int check = 0;
         sop("Enter a name for the cat");
         String namer = boi.next();
-        sop("Enter 1 for Tiger, 2 for Lion, and 3 for Jagur");
-        int choice = boi.nextInt();
-        switch (choice) {
-            case 1: 
-                Tiger t = new Tiger(namer);
-                p.add(t);
+        for (int y = 0; y < p.size(); y++) {
+            if (namer.equals(p.get(y).name())) {
+                sop("this name is taken");
+                check  = 1;
                 break;
-            case 2:
-                Lion l = new Lion(namer);
-                p.add(l);
-                break;
-            case 3:
-                Jaguar j = new Jaguar(namer);
-                p.add(j);
-                break;
-            default: 
-            sop("Error");
+            }
         }
-        sop("STATUS: " + namer + " has been added");
+        if (check == 0) {
+            sop("Enter 1 for Tiger, 2 for Lion, and 3 for Jagur");
+            int choice = boi.nextInt();
+            switch (choice) {
+                case 1: 
+                    Tiger t = new Tiger(namer);
+                    p.add(t);
+                    break;
+                case 2:
+                    Lion l = new Lion(namer);
+                    p.add(l);
+                    break;
+                case 3:
+                    Jaguar j = new Jaguar(namer);
+                    p.add(j);
+                    break;
+                default: 
+                    sop("please select one the options next time");
+                    Tiger e = new Tiger(namer);
+                    p.add(e);
+            }
+            sop("STATUS: " + namer + " has been added");
+        }
     }
     public static void listcats(ArrayList<panthera> p) {
-        for (panthera a: p) {
-            sop(a);
+        if (p.size() > 0 ) {
+            for (panthera a: p) {
+                sop(a);
+            }
+        }
+        else {
+            sop("There aint no cats here");
+            sop(p.size());
         }
     }
+    private static void findcats(ArrayList<panthera> p) {
+        int locater = 0;
+        sop("Enter cat's name");
+        String catter =  boi.next();
+        for (int i = 0; i < p.size(); i++) {
+            if (p.get(i).name().contains(catter)) {
+                sop(p.get(i));
+                locater = 1;
+            }
+        }
+        if (locater == 0) {
+            sop("cant find cat");
+        }
+    }
+    private static void deletingcat (ArrayList<panthera> p) {
+        int locater = 0;
+        sop("Enter name of cat to delete");
+        String catter = boi.next();
+        for (int i = 0; i < p.size(); i++) {
+            if (catter.equals(p.get(i).name())) {
+                p.remove(i);
+                locater = 1;
+            }
+        }
+        if (locater == 0) {
+            sop("cant find cat");
+        }
 
-
-
-
-
-
-
-
-
-
-
+    }
 
     public static void sop(Object x) {
         System.out.println(x);
