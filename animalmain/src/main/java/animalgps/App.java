@@ -1,10 +1,7 @@
 package animalgps;
 import java.util.*;
-import java.net.JarURLConnection;
 import java.util.Scanner;
-import java.util.concurrent.ArrayBlockingQueue;
 
-import javax.lang.model.element.Parameterizable;
 
 
 
@@ -14,17 +11,17 @@ import javax.lang.model.element.Parameterizable;
  */
 public class App 
 {
-    static Scanner boi;
+    static Scanner scanning;
 
     public static void main(String[] args) {
-        boi = new Scanner(System.in);
-        ArrayList<panthera> p = new ArrayList<>();
+        scanning = new Scanner(System.in);
+        ArrayList<Panthera> p = new ArrayList<>();
         char select = ' ';
         do {
             select = menu();
             switch (select) {
                 case 'c':
-                    crate(p);
+                    createcat(p);
                     break;
                 case 'd':
                     deletingcat(p);
@@ -38,41 +35,42 @@ public class App
                 case 'q':
                     break;
                 default:
-                    sop("Illegal input");
+                    System.out.println("Illegal input");
             }
         } while(select != 'q');
-        boi.close();
+        scanning.close();
 
     }
     public static char menu() {
         char command  = ' ';
-        sop("-----------------------------");
-        sop("African Cats");
-        sop("-----------------------------");
-        sop("c \t Creates a cat");
-        sop("d \t Deletes a cat");
-        sop("f \t Find a cat");
-        sop("l \t List all Cats");
-        sop("q \t Quit");
-        sop("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("African Cats");
+        System.out.println("-----------------------------");
+        System.out.println("c \t Creates a cat");
+        System.out.println("d \t Deletes a cat");
+        System.out.println("f \t Find a cat");
+        System.out.println("l \t List all Cats");
+        System.out.println("q \t Quit");
+        System.out.println("-----------------------------");
         System.out.print("Enter a command ");
-        command = boi.next().charAt(0);
+        command = scanning.next().charAt(0);
         return Character.toLowerCase(command);
     }
-    public static void crate(ArrayList<panthera> p) {
+    public static void createcat(ArrayList<Panthera> p) {
         int check = 0;
-        sop("Enter a name for the cat");
-        String namer = boi.next();
+        System.out.print("Enter a name for the cat: ");
+        String namer = scanning.next();
         for (int y = 0; y < p.size(); y++) {
             if (namer.equals(p.get(y).name())) {
-                sop("this name is taken");
+                System.out.println("this name is taken: ");
                 check  = 1;
                 break;
             }
         }
         if (check == 0) {
-            sop("Enter 1 for Tiger, 2 for Lion, and 3 for Jagur");
-            int choice = boi.nextInt();
+            try {
+                System.out.print("Enter 1 for Tiger, 2 for Lion, and 3 for Jagur: ");
+            int choice = scanning.nextInt();
             switch (choice) {
                 case 1: 
                     Tiger t = new Tiger(namer);
@@ -87,59 +85,54 @@ public class App
                     p.add(j);
                     break;
                 default: 
-                    sop("please select one the options next time");
+                System.out.println("please select one the options next time");
                     Tiger e = new Tiger(namer);
                     p.add(e);
             }
-            sop("STATUS: " + namer + " has been added");
+            System.out.println("\n STATUS: " + namer + " has been added");
+            }catch (Exception e) {
+                System.out.println("Error: Enter a number next time");
+                scanning.nextLine();
+            }
+            
         }
     }
-    public static void listcats(ArrayList<panthera> p) {
+    public static void listcats(ArrayList<Panthera> p) {
         if (p.size() > 0 ) {
-            for (panthera a: p) {
-                sop(a);
+            for (Panthera a: p) {
+                System.out.println(a);
             }
         }
         else {
-            sop("There aint no cats here");
-            sop(p.size());
+            System.out.println("There aint no cats here");
         }
     }
-    private static void findcats(ArrayList<panthera> p) {
+    private static void findcats(ArrayList<Panthera> p) {
         int locater = 0;
-        sop("Enter cat's name");
-        String catter =  boi.next();
+        System.out.print("Enter cat's name: ");
+        String catter =  scanning.next();
         for (int i = 0; i < p.size(); i++) {
             if (p.get(i).name().contains(catter)) {
-                sop(p.get(i));
+                System.out.println(p.get(i));
                 locater = 1;
             }
         }
         if (locater == 0) {
-            sop("cant find cat");
+            System.out.println("cant find cat");
         }
     }
-    private static void deletingcat (ArrayList<panthera> p) {
-        int locater = 0;
-        sop("Enter name of cat to delete");
-        String catter = boi.next();
+    private static void deletingcat (ArrayList<Panthera> p) {
+        System.out.print("Enter name of cat to delete ");
+        String catter = scanning.next();
         for (int i = 0; i < p.size(); i++) {
             if (catter.equals(p.get(i).name())) {
                 p.remove(i);
-                locater = 1;
+                return;
             }
         }
-        if (locater == 0) {
-            sop("cant find cat");
-        }
+        System.out.println("cant find cat");
 
     }
 
-    public static void sop(Object x) {
-        System.out.println(x);
-    }
-    public static void sopr(Object x) {
-        System.out.print(x);
-    }
 }
 

@@ -4,8 +4,8 @@ public class PantheraGPS {
       // constants
       private final Integer maxLongitude = 1000;
       private final Integer maxLatitude = 1000;
-      protected final float minSpeed = 0f;
-      protected final float maxSpeed = 50.0f;
+      protected final Float minSpeed = 0f;
+      protected final Float maxSpeed = 50.0f;
   
       private String name;
       private String species;
@@ -28,6 +28,40 @@ public class PantheraGPS {
           this.longitude = longitudeRandom.nextFloat() * maxLongitude;
           this.latitude = latitudeRandom.nextFloat() * maxLatitude;
       }
+       // getters
+       public String name() {
+        return this.name;
+    }
+    public String species() {
+        return this.species;
+    }
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+    // make a seed, based on the name
+    private Integer seed(String s) {
+        Integer seed = 0;
+        for (Integer i = 0; i < s.length() ; i++) {
+            char ch = s.charAt(i);
+            seed += (int) ch;
+        }
+        return seed;
+    }
+    public void move() {
+        this.longitude += longitudeRandom.nextFloat() * maxSpeed;
+        this.latitude += latitudeRandom.nextFloat() * maxSpeed;
+    }
+    // longitude of the panthera
+    public Float longitude() {
+        return longitude;
+    }
+    // latitude of the panthera
+    public Float latitude() {
+        return latitude;
+    }
+    public static void sop(Object x) {
+      System.out.println(x);
+  }
       // serializes attributes into a string
       public String toString() {
           String s;
@@ -43,41 +77,5 @@ public class PantheraGPS {
           s += " }";
           return s;
       }
-      // getters
-      public String name() {
-          return this.name;
-      }
-      public String species() {
-          return this.species;
-      }
-      public void setSpecies(String species) {
-          this.species = species;
-      }
-      // make a seed, based on the name
-      private Integer seed(String s) {
-          Integer seed = 0;
-          for (Integer i = 0; i < s.length() ; i++) {
-              char ch = s.charAt(i);
-              seed += (int) ch;
-          }
-          return seed;
-      }
-      public void move() {
-          this.longitude += longitudeRandom.nextFloat() * maxSpeed;
-          this.latitude += latitudeRandom.nextFloat() * maxSpeed;
-      }
-      // longitude of the panthera
-      public Float longitude() {
-          return longitude;
-      }
-      // latitude of the panthera
-      public Float latitude() {
-          return latitude;
-      }
-      public static void sop(Object x) {
-        System.out.println(x);
-    }
-      
-
     
 }

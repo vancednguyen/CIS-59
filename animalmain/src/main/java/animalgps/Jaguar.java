@@ -1,8 +1,19 @@
 package animalgps;
+import java.util.Random;
 
-public class Jaguar extends panthera {
+public class Jaguar extends Panthera {
+    private String sleeps;
+    Random randomNum = new Random();
     public Jaguar(String name) {
         super(name);
+        //randomizes to see if the cat sleeps in a tree
+        int rand = randomNum.nextInt(2);
+        if (rand == 1){
+            this.sleeps = "True";
+        }
+        else {
+            this.sleeps = "False";
+        }
     }
     
     public String fur() {
@@ -13,14 +24,7 @@ public class Jaguar extends panthera {
     }
 
     public String sleepsintrees() {
-        int rand = (int) (Math.random() * 2) +1;
-        if (rand == 1){
-            return "True";
-        }
-        else {
-            return "False";
-        }
-
+        return this.sleeps;
     }
     @Override // override superclass method
     public String toString() {

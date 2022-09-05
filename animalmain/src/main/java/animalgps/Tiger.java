@@ -1,6 +1,6 @@
 package animalgps;
 
-public class Tiger extends panthera{
+public class Tiger extends Panthera{
     public Tiger(String name) {
         super(name);
     }

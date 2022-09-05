@@ -75,7 +75,6 @@ public class App
         System.out.print("Enter a command ");
         command = scanning.nextLine().toLowerCase();
         return command;
-
     }
 
     static Float setA() {
@@ -104,6 +103,7 @@ public class App
             return 0.000f;
         }
     }
+    
     static Float add(Float x, Float y) {
         return x + y;
     }
