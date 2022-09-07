@@ -59,9 +59,6 @@ public class PantheraGPS {
     public Float latitude() {
         return latitude;
     }
-    public static void sop(Object x) {
-      System.out.println(x);
-  }
       // serializes attributes into a string
       public String toString() {
           String s;

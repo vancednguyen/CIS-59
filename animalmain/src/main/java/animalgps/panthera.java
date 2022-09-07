@@ -2,9 +2,10 @@ package animalgps;
 
 public class Panthera extends PantheraGPS {
 
-    private final Float maxweight = 600.0f;
-    private final Float minweight = 10.0f;
+    private final Float maxWeight = 600.0f;
+    private final Float minWeight = 10.0f;
     private Float weighting;
+    private Float speeding;
 
     public Panthera(String name) {
         super(name);
@@ -12,17 +13,17 @@ public class Panthera extends PantheraGPS {
         // initialize attributes
         this.setSpecies("Panthera");
         //randomizes the wieght between 10 and 600
-        this.weighting = (float) (Math.random() *maxweight) +minweight;
+        this.weighting = (float) (Math.random() *maxWeight) +minWeight;
     }
     public Float speed() {
-        float speeding = (float) (Math.random() * maxSpeed) + minSpeed;
+        speeding = (float) (Math.random() * maxSpeed) + minSpeed;
         return speeding;
       }
     public Float weight() {
         return this.weighting;
     }
     public static void roar() {
-        sop("Rrrrrrrrroooooooaaaaarrrrr!");
+        System.out.println("Rrrrrrrrroooooooaaaaarrrrr!");
     }
     // serializes attributes into a string
     @Override // override superclass method

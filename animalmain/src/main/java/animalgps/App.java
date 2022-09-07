@@ -21,16 +21,16 @@ public class App
             select = menu();
             switch (select) {
                 case 'c':
-                    createcat(p);
+                    createCat(p);
                     break;
                 case 'd':
-                    deletingcat(p);
+                    deletingCat(p);
                     break;
                 case 'f':
-                    findcats(p);
+                    findCats(p);
                     break;
                 case 'l':
-                    listcats(p);
+                    listCats(p);
                     break;
                 case 'q':
                     break;
@@ -56,18 +56,18 @@ public class App
         command = scanning.next().charAt(0);
         return Character.toLowerCase(command);
     }
-    public static void createcat(ArrayList<Panthera> p) {
-        int check = 0;
+    public static void createCat(ArrayList<Panthera> p) {
+        boolean check = false;
         System.out.print("Enter a name for the cat: ");
         String namer = scanning.next();
         for (int y = 0; y < p.size(); y++) {
             if (namer.equals(p.get(y).name())) {
                 System.out.println("this name is taken: ");
-                check  = 1;
+                check  = true;
                 break;
             }
         }
-        if (check == 0) {
+        if (check == false) {
             try {
                 System.out.print("Enter 1 for Tiger, 2 for Lion, and 3 for Jagur: ");
             int choice = scanning.nextInt();
@@ -90,6 +90,7 @@ public class App
                     p.add(e);
             }
             System.out.println("\n STATUS: " + namer + " has been added");
+
             }catch (Exception e) {
                 System.out.println("Error: Enter a number next time");
                 scanning.nextLine();
@@ -97,7 +98,7 @@ public class App
             
         }
     }
-    public static void listcats(ArrayList<Panthera> p) {
+    public static void listCats(ArrayList<Panthera> p) {
         if (p.size() > 0 ) {
             for (Panthera a: p) {
                 System.out.println(a);
@@ -107,21 +108,21 @@ public class App
             System.out.println("There aint no cats here");
         }
     }
-    private static void findcats(ArrayList<Panthera> p) {
-        int locater = 0;
+    private static void findCats(ArrayList<Panthera> p) {
+        boolean locater = false;
         System.out.print("Enter cat's name: ");
         String catter =  scanning.next();
         for (int i = 0; i < p.size(); i++) {
             if (p.get(i).name().contains(catter)) {
                 System.out.println(p.get(i));
-                locater = 1;
+                locater = true;
             }
         }
-        if (locater == 0) {
+        if (locater == false) {
             System.out.println("cant find cat");
         }
     }
-    private static void deletingcat (ArrayList<Panthera> p) {
+    private static void deletingCat (ArrayList<Panthera> p) {
         System.out.print("Enter name of cat to delete ");
         String catter = scanning.next();
         for (int i = 0; i < p.size(); i++) {

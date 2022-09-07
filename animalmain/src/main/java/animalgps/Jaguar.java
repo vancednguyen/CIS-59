@@ -2,17 +2,17 @@ package animalgps;
 import java.util.Random;
 
 public class Jaguar extends Panthera {
-    private String sleeps;
+    private Boolean sleeps;
     Random randomNum = new Random();
     public Jaguar(String name) {
         super(name);
         //randomizes to see if the cat sleeps in a tree
         int rand = randomNum.nextInt(2);
         if (rand == 1){
-            this.sleeps = "True";
+            this.sleeps = true;
         }
         else {
-            this.sleeps = "False";
+            this.sleeps = false;
         }
     }
     
@@ -23,7 +23,7 @@ public class Jaguar extends Panthera {
         return "Jaguar";
     }
 
-    public String sleepsintrees() {
+    public Boolean sleepsinTrees() {
         return this.sleeps;
     }
     @Override // override superclass method
@@ -45,7 +45,7 @@ public class Jaguar extends Panthera {
         s += ", ";
         s += "weight: " + this.weight();
         s += ", ";
-        s += "Does sleep in a tree: " + sleepsintrees();
+        s += "Does sleep in a tree: " + sleepsinTrees();
         s += " }";
         return s;
     }

@@ -4,11 +4,11 @@ public class Lion extends Panthera {
     public Lion(String name) {
         super(name);
     }
-    public String fur() {
-        return "mane";
-    }
     public String species() {
         return "Lion";
+    }
+    public String fur() {
+        return "mane";
     }
     @Override // override superclass method
     public String toString() {
