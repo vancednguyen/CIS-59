@@ -3,10 +3,11 @@ import java.util.Random;
 
 public class Jaguar extends Panthera {
     private Boolean sleeps;
-    Random randomNum = new Random();
+    private Random randomNum; 
     public Jaguar(String name) {
         super(name);
         //randomizes to see if the cat sleeps in a tree
+        randomNum = new Random();
         int rand = randomNum.nextInt(2);
         if (rand == 1){
             this.sleeps = true;
@@ -15,15 +16,15 @@ public class Jaguar extends Panthera {
             this.sleeps = false;
         }
     }
-    
-    public String fur() {
-        return "spots";
-    }
     public String species() {
         return "Jaguar";
     }
 
-    public Boolean sleepsinTrees() {
+    public String fur() {
+        return "spots";
+    }
+
+    public Boolean sleepsInTrees() {
         return this.sleeps;
     }
     @Override // override superclass method
@@ -45,7 +46,7 @@ public class Jaguar extends Panthera {
         s += ", ";
         s += "weight: " + this.weight();
         s += ", ";
-        s += "Does sleep in a tree: " + sleepsinTrees();
+        s += "Does sleep in a tree: " + sleepsInTrees();
         s += " }";
         return s;
     }

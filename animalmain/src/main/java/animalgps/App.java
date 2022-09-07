@@ -35,7 +35,7 @@ public class App
                 case 'q':
                     break;
                 default:
-                    System.out.println("Illegal input");
+                    System.out.println("Error: Illegal input");
             }
         } while(select != 'q');
         scanning.close();
@@ -62,7 +62,7 @@ public class App
         String namer = scanning.next();
         for (int y = 0; y < p.size(); y++) {
             if (namer.equals(p.get(y).name())) {
-                System.out.println("this name is taken: ");
+                System.out.println("Error: This name is taken: ");
                 check  = true;
                 break;
             }
@@ -105,7 +105,7 @@ public class App
             }
         }
         else {
-            System.out.println("There aint no cats here");
+            System.out.println("Error: There ain't no cats here");
         }
     }
     private static void findCats(ArrayList<Panthera> p) {
@@ -119,7 +119,7 @@ public class App
             }
         }
         if (locater == false) {
-            System.out.println("cant find cat");
+            System.out.println("Error: cant find cat");
         }
     }
     private static void deletingCat (ArrayList<Panthera> p) {
@@ -131,7 +131,7 @@ public class App
                 return;
             }
         }
-        System.out.println("cant find cat");
+        System.out.println("Error: can't find cat");
 
     }
 
