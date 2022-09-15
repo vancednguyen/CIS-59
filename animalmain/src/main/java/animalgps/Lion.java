@@ -17,17 +17,17 @@ public class Lion extends Panthera {
         s = "{ ";
         s += "name: " + name();
         s += ", ";
-        s += "species: " + species();
+        s += "species: " + this.species();
         s += ", ";
         s += "longitude: " + longitude();
         s += ", ";
         s += "latitude: " + latitude();
         s += ", ";
-        s += "speed: " + this.speed();
+        s += "speed: " + speed();
         s += ", ";
-        s += "fur: " + fur();
+        s += "fur: " + this.fur();
         s += ", ";
-        s += "weight: " + this.weight();
+        s += "weight: " + weight();
         s += " }";
         return s;
     }

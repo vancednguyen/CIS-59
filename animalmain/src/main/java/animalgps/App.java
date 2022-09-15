@@ -2,6 +2,8 @@ package animalgps;
 import java.util.*;
 import java.util.Scanner;
 
+import javax.swing.plaf.TreeUI;
+
 
 
 
@@ -34,6 +36,12 @@ public class App
                     break;
                 case 'q':
                     break;
+                case 'r':
+                    riskreport(p);
+                    break;
+                    case 'w':
+                    warningreport(p);
+                    break;
                 default:
                     System.out.println("Error: Illegal input");
             }
@@ -51,8 +59,10 @@ public class App
         System.out.println("f \t Find a cat");
         System.out.println("l \t List all Cats");
         System.out.println("q \t Quit");
+        System.out.println("r \t Risk Report");
+        System.out.println("w \t Warning Report");
         System.out.println("-----------------------------");
-        System.out.print("Enter a command ");
+        System.out.print("Enter a command: ");
         command = scanning.next().charAt(0);
         return Character.toLowerCase(command);
     }
@@ -85,11 +95,12 @@ public class App
                     p.add(j);
                     break;
                 default: 
-                System.out.println("please select one the options next time");
-                    Tiger e = new Tiger(namer);
-                    p.add(e);
+                System.out.println("Error species not fount. Defaulting species to Tiger");
+                Tiger e = new Tiger(namer);
+                p.add(e);
+
             }
-            System.out.println("\n STATUS: " + namer + " has been added");
+            System.out.println("\nSTATUS: " + namer + " has been added");
 
             }catch (Exception e) {
                 System.out.println("Error: Enter a number next time");
@@ -132,8 +143,64 @@ public class App
             }
         }
         System.out.println("Error: can't find cat");
+    }
+    private static void riskreport(ArrayList<Panthera> p) {
+        boolean locater = false;
+        boolean locate2  = false;
+        int catnumb1 = 0;
+        int catnumb2 = 0;
+        System.out.print("Enter first cat's name: ");
+        String cat1 =  scanning.next();
+        System.out.print("Enter second cat's name: ");
+        String cat2 =  scanning.next();
+        for (int i = 0; i < p.size(); i++) {
+            if (cat1.equals(p.get(i).name())) {
+                catnumb1 = i;
+                locater = true;
+            }
+            else if (cat2.equals(p.get(i).name())) {
+                catnumb2  = i;
+                locate2 = true;
+        }
+    }
+        if (locater == false) {
+            System.out.println("Error: cant find cat1");
+        }
+        else if (locate2 == false) {
+            System.out.println ("Error: cant find cat2");
+        }
+        else if (locater == true && locate2 == true) {
+            System.out.println(p.get(catnumb1));
+            System.out.println(p.get(catnumb2));
+            double z = Math.sqrt(Math.pow((p.get(catnumb2).longitude() - p.get(catnumb1).longitude()), 2) + Math.pow((p.get(catnumb2).latitude()- p.get(catnumb1).latitude()), 2));
+            System.out.printf("The distance between " + p.get(catnumb1).name() + " and " + p.get(catnumb2).name() + " %.2f \n", z);
+        }
+       
+    }
+    private static void warningreport(ArrayList<Panthera> p) {
+        ArrayList<Double> distance = new ArrayList<>();
+        double z = 0;
+        System.out.print("Enter your longitude: ");
+        Double yourlongitude =  scanning.nextDouble();
+        System.out.print("Enter your latitude: ");
+        Double yourlatitude =  scanning.nextDouble();
+        for (int i = 0; i < p.size(); i++) {
+            z = Math.sqrt(Math.pow((yourlongitude - p.get(i).longitude()), 2) + Math.pow((yourlatitude- p.get(i).latitude()), 2));
+            distance.add(z);
+        }
+        double x = Collections.min(distance);
+        for (int i = 0; i < p.size(); i++) {
+            if (x == distance.get(i)) {
+                System.out.println(p.get(i));
+                System.out.printf("the closest cat is " + p.get(i).name() + " which is at a distances of %.2f \n", x);
+                break;
+            }
+        }
 
+        }
+       
     }
 
-}
+
+
 

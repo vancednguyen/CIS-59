@@ -64,7 +64,7 @@ public class PantheraGPS {
           String s;
           // since the object is complex, we return a JSON formatted string
           s = "{ ";
-          s += "name: " + name;
+          s += "name: " + this.name();
           s += ", ";
           s += "species: " + this.species();
           s += ", ";
