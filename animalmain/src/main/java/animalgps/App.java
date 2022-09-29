@@ -1,15 +1,9 @@
 package animalgps;
 import java.util.*;
 import java.util.Scanner;
-
-import javax.swing.plaf.TreeUI;
-
-
-
-
-/**
- * Hello world!
- *
+/** Vance Nguyen
+ * CIS-059
+ * African Big Cats Project
  */
 public class App 
 {
@@ -35,12 +29,13 @@ public class App
                     listCats(p);
                     break;
                 case 'q':
+                    quit();
                     break;
                 case 'r':
-                    riskreport(p);
+                    riskReport(p);
                     break;
                     case 'w':
-                    warningreport(p);
+                    warningReport(p);
                     break;
                 default:
                     System.out.println("Error: Illegal input");
@@ -144,7 +139,7 @@ public class App
         }
         System.out.println("Error: can't find cat");
     }
-    private static void riskreport(ArrayList<Panthera> p) {
+    private static void riskReport(ArrayList<Panthera> p) {
         boolean locater = false;
         boolean locate2  = false;
         int catnumb1 = 0;
@@ -173,22 +168,25 @@ public class App
             System.out.println(p.get(catnumb1));
             System.out.println(p.get(catnumb2));
             double z = Math.sqrt(Math.pow((p.get(catnumb2).longitude() - p.get(catnumb1).longitude()), 2) + Math.pow((p.get(catnumb2).latitude()- p.get(catnumb1).latitude()), 2));
-            System.out.printf("The distance between " + p.get(catnumb1).name() + " and " + p.get(catnumb2).name() + " %.2f \n", z);
+            System.out.printf("The distance between " + p.get(catnumb1).name() + " and " + p.get(catnumb2).name() + " is %.2f \n", z);
         }
        
     }
-    private static void warningreport(ArrayList<Panthera> p) {
+    private static void warningReport(ArrayList<Panthera> p) {
+       try {
         ArrayList<Double> distance = new ArrayList<>();
-        double z = 0;
+        double totaldis = 0;
         System.out.print("Enter your longitude: ");
         Double yourlongitude =  scanning.nextDouble();
         System.out.print("Enter your latitude: ");
         Double yourlatitude =  scanning.nextDouble();
         for (int i = 0; i < p.size(); i++) {
-            z = Math.sqrt(Math.pow((yourlongitude - p.get(i).longitude()), 2) + Math.pow((yourlatitude- p.get(i).latitude()), 2));
-            distance.add(z);
+            totaldis = Math.sqrt(Math.pow((yourlongitude - p.get(i).longitude()), 2) + Math.pow((yourlatitude- p.get(i).latitude()), 2));
+            distance.add(totaldis);
         }
+
         double x = Collections.min(distance);
+        
         for (int i = 0; i < p.size(); i++) {
             if (x == distance.get(i)) {
                 System.out.println(p.get(i));
@@ -197,7 +195,16 @@ public class App
             }
         }
 
+        } catch (Exception e) {
+            System.out.println("Error, illegal input");
+            scanning.nextLine();
         }
+       }
+       public static void quit() {
+        System.out.println("\n-----------------------------");
+        System.out.println("Thank you for using the African Big Cats App.");
+        System.out.println("-----------------------------\n");
+       }
        
     }
 
