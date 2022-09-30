@@ -84,7 +84,8 @@ public class App
             number = scanning.nextFloat();
             scanning.nextLine();
             return number;
-        }catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println("Error: Enter a number next time");
             scanning.nextLine();
             return 0.000f;
@@ -97,7 +98,8 @@ public class App
             number = scanning.nextFloat();
             scanning.nextLine();
             return number;
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Error: Enter a number next time");
             scanning.nextLine();
             return 0.000f;
@@ -114,7 +116,7 @@ public class App
         return x * y;
     }
     static Float divide(Float x, Float y) {
-        if (x == 0 || y ==0){
+        if (x == 0 || y == 0){
             System.out.println("Error: can't divide 0");
             return 0.000f;
         }
